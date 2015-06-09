@@ -12,9 +12,13 @@
   <body>
   <form method="post" action="/welcome">
 
-    <div style="width:500px;text-align:center; border:1px solid #09f; margin:10px auto;height:200px; line-height:30px; padding:10px;">
+    <div style="width:500px;text-align:center; border:1px solid #09f; margin:10px auto;height:300px; line-height:30px; padding:10px;">
       <p>欢迎登陆本系统<p>
      <input name="title" type="text"><br><br><br><input type="submit" value="登陆 " class="bt">
+     {{#condition}}
+
+     {{/condition}}
+     {{! this is comment}}
      </div>
   </form>
   </body>
