@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="/javascripts/jquery-2.0.3.min.js"></script>
+<body>
+{{#products}}
+<li>市场参考价格<input type="text" id="name" value="{{name}}"></li>
+<li>描述<input type="text" id="des" value="{{des}}"></li>
+<li>图片路径<input type="text" id="image" value="{{image}}"></li>
+<li><input type="hidden" id="pid" value="{{id}}"/><button id="btnUpdate">保存</button>
+    {{/products}}
+</body>
+</html>
+
+<script >
+    $(function(){
+        $("#btnUpdate").click(function(){
+            if($("#pid").val()) {
+                $.post('/update/edit',
+                        {name: $("#name").val(), des: $("#des").val(), image: $("#image").val(), pid: $("#pid").val()},
+                        function (data) {
+                            alert("修改成功！");
+                            location.href = "/list";
+                        });
+            }else{
+                $.post('/update/add',
+                        {name: $("#name").val(), des: $("#des").val(), image: $("#image").val()},
+                        function (data) {
+                            alert("添加成功！");
+                            location.href = "/list";
+                        });
+            }
+        });
+    });
+
+</script>

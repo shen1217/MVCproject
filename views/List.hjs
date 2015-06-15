@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-2.0.3.min.js"></script>
+</head>
+<body>
+<h1>{{title}}</h1>
+<h2>该页面被访问了{{count}}次</h2>
+
+<button id="btnAdd">添加</button>
+    {{#products}}
+
+    <div class="user-mall-list">
+        <ul class="m-uls clearfix">
+
+            <li class="m-li">
+                <img src="{{image}}" width="30" height="30">
+                <div class="text">
+
+                    <span class="m-note">市场参考价格：{{name}} 元</span>
+                    <div class="m-p">
+                        <strong class="s">{{des}}</strong><br/>
+                    </div>
+
+                </div>
+                <input type="hidden" class="pid" value="{{id}}"/>
+                <button class="btnUpdate">修改</button> <button class="btnDelete">删除</button>
+            </li>
+
+        </ul>
+    </div>
+
+    </div>
+    </table>
+    {{/products}}
+
+
+</body>
+</html>
+
+<script>
+    $(function(){
+        $("#btnAdd").click(function(){
+            location.href="/update?pid=0";
+        });
+        $("ul .btnUpdate").bind("click", function () {
+            var pid = $(this).prev().val();
+            location.href="/update?pid="+pid;
+        });
+
+
+        $("ul .btnDelete").bind("click", function () {
+            var pid = $(this).prev().prev().val();
+            if(confirm("确定要删除？"))
+            {
+                $.post('/list/delete',
+                        {pid: pid},
+                        function (data) {
+                            alert("删除成功！");
+                            location.href = "/list";
+                        });
+            }
+            location.href="/list";
+        });
+    });
+
+</script>
