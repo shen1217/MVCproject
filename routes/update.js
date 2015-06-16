@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
+var q = require('q');
 var sqlOperator = require('../db/sqlOperator.js');
 
 router.get('/', function (req,res,next) {
@@ -25,6 +26,22 @@ router.post('/edit', function (req,res,next) {
                 res.send({isSuccess:true});
             }
     });
+});
+
+router.post('/edit2', function (req,res,next) {
+    var deferred = q.defer();
+    var sql = "update products set name='"+req.body.name
+        +"',des='"+req.body.des+"',image='"+req.body.image+"' where id="+req.body.pid;
+    sqlOperator.query(sql, function (err,result) {
+        if(err) {
+            deferred.reject(err);
+        }
+        else
+        {
+            deferred.resolve({isSuccess:true});
+        }
+    });
+    return  deferred.promise();
 });
 
 router.post('/add', function (req,res,next) {

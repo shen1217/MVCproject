@@ -19,9 +19,10 @@
     $(function(){
         $("#btnUpdate").click(function(){
             if($("#pid").val()) {
-                $.post('/update/edit',
+                $.post('/update/edit2',
                         {name: $("#name").val(), des: $("#des").val(), image: $("#image").val(), pid: $("#pid").val()},
                         function (data) {
+                            alert(data);
                             alert("修改成功！");
                             location.href = "/list";
                         });

@@ -2,6 +2,7 @@
  * Created by Administrator on 2015/6/10.
  */
 var mssql = require('mssql');
+var q = require('q');
 var config = {
     user:'sa',
     password:'sql@123',
@@ -30,8 +31,24 @@ var config = {
         });
     }
 
-
-
+exports.query2 = function(sql) {
+    var deferred = q.defer();
+    var connection = new mssql.Connection(config, function (err) {
+        if (err)
+        {
+            deferred.reject(err);
+        }
+        var request = new mssql.Request(connection);
+        request.query(sql, function (err2,data) {
+            if (err2)
+            {
+                deferred.reject(err2);
+            }
+            deferred.resolve(data);
+        });
+    });
+    return  deferred.promise;
+};
 
 
 

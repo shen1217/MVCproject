@@ -10,7 +10,7 @@
     </style>
   </head>
   <body>
-  <form method="post" action="/welcome">
+  <form method="get" action="/welcome">
 
     <div style="width:500px;text-align:center; border:1px solid #09f; margin:10px auto;height:300px; line-height:30px; padding:10px;">
       <p>欢迎登陆本系统<p>

@@ -15,6 +15,7 @@ router.get('/', function (req,res) {
     });
 })
 
+
 router.post('/delete', function (req,res,next) {
     sqlOperator.query('delete from products where id ='+req.body.pid, function (err,result) {
         if(err)

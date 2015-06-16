@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{ title }}</title>
+<head>
+    <title></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+    <script src="/javascripts/jquery-2.0.3.min.js"></script>
+</head>
+<body>
 
-   <div style="width:500px;text-align:center; border:1px solid #ccc; margin:10px auto;"> <h1>Welcome  {{ title }}</h1></div>
-<p>{{#am}}下午好{{/am}}</p>
-   {{#condition}}
+{{#products}}
 
-  <div class="user-mall-list">
+<div class="user-mall-list">
     <ul class="m-uls clearfix">
 
-      <li class="m-li">
-      <img src="{{image}}" width="300" height="300">
-          <div class="text">
+        <li class="m-li">
 
-          <span class="m-note">市场参考价格：{{price}} 元</span>
-          <div class="m-p">
-            <strong class="s">{{name}}</strong><br/>
-          </div>
+            <img src="{{image}}" width="30" height="30">
+            <div class="text">
 
-        </div>
-      </li>
+                <span class="m-note">市场参考价格：{{name}} 元</span>
+                <div class="m-p">
+                    <strong class="s">{{des}}</strong><br/>
+                </div>
+
+            </div>
+            <input type="hidden" class="pid" value="{{id}}"/>
+
+        </li>
 
     </ul>
-  </div>
+</div>
 
 </div>
-   </table>
-   {{/condition}}
-   {{! this is comment}}
+</table>
+{{/products}}
 
-  </body>
+
+</body>
 </html>
